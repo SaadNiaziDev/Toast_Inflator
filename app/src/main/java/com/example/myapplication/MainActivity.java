@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -16,10 +21,14 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         b=findViewById(R.id.button1);
         b.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(),adan.class);
-            intent.putExtra("key","Adan");
-            intent.putExtra("key2","12345");
-            startActivity(intent);
+            LayoutInflater li = getLayoutInflater();
+            View layout= li.inflate(R.layout.my_layout,(ViewGroup) findViewById(R.id.custom));
+            //Toast object
+            Toast toast = new Toast(getApplicationContext());
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.setView(layout);
+            toast.show();
         });
     }
 
